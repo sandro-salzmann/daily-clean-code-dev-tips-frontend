@@ -8,6 +8,7 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 function App() {
   return (
     <BrowserRouter>
+    <h1>Daily Clean Code Dev Tips</h1>
       <Routes>
         <Route path="" element={<HomePage />} />
         <Route path="setup" element={<SetupPage />} />
