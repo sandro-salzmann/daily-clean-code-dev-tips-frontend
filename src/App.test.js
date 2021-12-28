@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders Daily Clean Code Dev Tips text', () => {
+test('renders Get clean code tips as notifications text', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Daily Clean Code Dev Tips/i);
+  const linkElement = screen.getByText(/Get clean code tips as notifications/i);
   expect(linkElement).toBeInTheDocument();
 });
