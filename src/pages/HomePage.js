@@ -73,7 +73,15 @@ export const HomePage = () => {
           {isConfigured ? "Configure notifications" : "Start now"}
         </Button>
         <Header as="h3">
-          or <a onClick={onInstallClick}>install our app</a>
+          or
+          <Button
+            secondary
+            basic
+            onClick={onInstallClick}
+            style={{ marginLeft: 8 }}
+          >
+            install our app
+          </Button>
         </Header>
       </Container>
     </Container>
