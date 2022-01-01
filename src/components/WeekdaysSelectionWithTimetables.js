@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
 import { WeekdaySelectionWithTimetable } from "./WeekdaySelectionWithTimetable";
 
 export const WeekdaysSelectionWithTimetables = ({
@@ -7,7 +6,7 @@ export const WeekdaysSelectionWithTimetables = ({
   getOnRowChangeHandler,
 }) => {
   return (
-    <Form unstackable>
+    <div>
       {weekdays.map((weekday, rowIndex) => (
         <WeekdaySelectionWithTimetable
           key={"WEEKDAY_" + rowIndex}
@@ -16,6 +15,6 @@ export const WeekdaysSelectionWithTimetables = ({
           {...weekday}
         />
       ))}
-    </Form>
+    </div>
   );
 };
