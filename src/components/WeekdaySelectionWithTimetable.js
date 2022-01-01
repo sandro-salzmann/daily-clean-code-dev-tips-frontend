@@ -30,7 +30,6 @@ export const WeekdaySelectionWithTimetable = ({
       </Button>
       {useSpecificTimes && selected && (
         <Timetable
-          style={{ paddingTop: 14 }}
           timetable={timetable}
           setTimetable={timetable => onRowChange("timetable", timetable)}
         />

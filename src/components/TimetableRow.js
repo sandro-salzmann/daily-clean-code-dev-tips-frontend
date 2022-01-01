@@ -9,7 +9,7 @@ export const TimetableRow = ({
   onChange,
 }) => {
   return (
-    <List.Item>
+    <List.Item style={{ margin: "14px 0px" }}>
       <Input
         type="number"
         name="amount"
@@ -49,7 +49,7 @@ export const TimetableRow = ({
         <Fragment>
           <span style={{ margin: "0px 8px" }}>and</span>
           <Input
-            style={{ height: 38, transform: "translateY(1.3px)" }}
+            style={{ height: 38, transform: "translateY(1.3px)", marginTop: 4 }}
             type="time"
             value={secondTime}
             onChange={onChange}

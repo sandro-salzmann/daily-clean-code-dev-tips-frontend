@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, List } from "semantic-ui-react";
 import { TimetableRow } from "./TimetableRow";
 
-export const Timetable = ({ timetable, setTimetable, style }) => {
+export const Timetable = ({ timetable, setTimetable }) => {
   const getOnRemoveRowClickHandler = rowIndex => () => {
     setTimetable(timetable.filter((_x, i) => i !== rowIndex));
   };
@@ -24,9 +24,9 @@ export const Timetable = ({ timetable, setTimetable, style }) => {
     setTimetable([...timetable, { amount: 1, firstTime: "09:00" }]);
 
   return (
-    <div style={style}>
+    <div>
       <Form style={{ marginBottom: 14 }}>
-        <List relaxed={true}>
+        <List>
           {timetable.map((row, rowIndex) => (
             <TimetableRow
               key={rowIndex}
@@ -37,7 +37,9 @@ export const Timetable = ({ timetable, setTimetable, style }) => {
           ))}
         </List>
       </Form>
-      <Button onClick={onAddRowClick}>Add row</Button>
+      <Button style={{ marginTop: 3 }} onClick={onAddRowClick}>
+        Add row
+      </Button>
     </div>
   );
 };

@@ -17,13 +17,30 @@ export const SetupFinishedPage = () => {
         reconfigure your settings.
       </Header>
       <Header as="h2">Or you could install our app with one click!</Header>
-      <Button size="big" primary onClick={onInstallClick}>
+      <Button
+        size="big"
+        style={{ marginTop: 3 }}
+        primary
+        onClick={onInstallClick}
+      >
         Install app
       </Button>
-      <Button size="big" primary basic onClick={onTipsClick}>
+      <Button
+        size="big"
+        style={{ marginTop: 3 }}
+        primary
+        basic
+        onClick={onTipsClick}
+      >
         View tips
       </Button>
-      <Button size="big" primary basic onClick={onConfigureClick}>
+      <Button
+        size="big"
+        style={{ marginTop: 4.5 }}
+        primary
+        basic
+        onClick={onConfigureClick}
+      >
         Configure notifications
       </Button>
     </div>
