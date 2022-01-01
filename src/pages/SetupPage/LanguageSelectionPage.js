@@ -25,6 +25,7 @@ export const LanguageSelectionPage = ({
         size="big"
         style={{ margin: "14px 0px" }}
         onClick={showTimingOverview}
+        disabled={selectedLanguages.length === 0}
       >
         Next
       </Button>
