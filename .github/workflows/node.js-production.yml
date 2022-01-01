@@ -5,12 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ * ]
+    branches: [ release-* ]
 
 jobs:
   build:
 
-    runs-on: [self-hosted, development]
+    runs-on: [self-hosted, production]
 
     strategy:
       matrix:
