@@ -8,12 +8,28 @@ export const TimetableRow = ({
   onRemoveClick,
   onChange,
 }) => {
+  const onChangeAmount = (e, v) => {
+    let { value } = v;
+
+    if (!value) onChange({ ...e, target: { name: "amount" } });
+    else {
+      // take last digit from value
+      value = parseInt(value) % 10;
+
+      if (value >= 1 && value <= 9)
+        onChange({
+          ...e,
+          target: { name: "amount", value: parseInt(value) },
+        });
+    }
+  };
+
   return (
     <List.Item style={{ margin: "14px 0px" }}>
       <Input
         type="number"
         name="amount"
-        onChange={onChange}
+        onChange={onChangeAmount}
         value={amount}
         style={{ width: 40 }}
       />
