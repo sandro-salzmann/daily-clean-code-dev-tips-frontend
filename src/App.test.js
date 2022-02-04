@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders Get clean code tips as notifications text', () => {
+test("renders Coming soon. text", () => {
   render(<App />);
-  const linkElement = screen.getByText(/Get clean code tips as notifications/i);
+  const linkElement = screen.getByText(/Coming soon./i);
   expect(linkElement).toBeInTheDocument();
 });
