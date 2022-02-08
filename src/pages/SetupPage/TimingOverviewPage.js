@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Button, Header, Icon } from "semantic-ui-react";
 
 export const TimingOverviewPage = ({ showSetupFinish, showTimeSelection }) => {
   return (
-    <div>
+    <Fragment>
       <Header as="h1">Per default we notify you as follows:</Header>
       <Header as="h2">
         <Icon name="time" />
@@ -27,6 +27,6 @@ export const TimingOverviewPage = ({ showSetupFinish, showTimeSelection }) => {
       >
         No, keep these settings
       </Button>
-    </div>
+    </Fragment>
   );
 };

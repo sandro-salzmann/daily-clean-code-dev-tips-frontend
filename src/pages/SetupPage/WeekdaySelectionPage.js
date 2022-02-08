@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Button, Header } from "semantic-ui-react";
 import { WeekdaysSelectionWithTimetables } from "../../components/WeekdaysSelectionWithTimetables";
 
@@ -8,7 +8,7 @@ export const WeekdaySelectionPage = ({
   setWeekdays,
 }) => {
   return (
-    <div>
+    <Fragment>
       <Header as="h1">On which days do you want to get notified?</Header>
       <WeekdaysSelectionWithTimetables
         weekdays={weekdays}
@@ -28,6 +28,6 @@ export const WeekdaySelectionPage = ({
       >
         Start notifications
       </Button>
-    </div>
+    </Fragment>
   );
 };

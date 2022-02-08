@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Button, Header } from "semantic-ui-react";
 import { Timetable } from "../../components/Timetable";
 
@@ -8,7 +8,7 @@ export const TimeSelectionPage = ({
   showWeekdaySelection,
 }) => {
   return (
-    <div>
+    <Fragment>
       <Header as="h1">When do you want to be notified?</Header>
       <Timetable timetable={timetable} setTimetable={setTimetable} />
       <Button
@@ -18,6 +18,6 @@ export const TimeSelectionPage = ({
         style={{ margin: "14px 0px" }}
         onClick={showWeekdaySelection}
       />
-    </div>
+    </Fragment>
   );
 };
