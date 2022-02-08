@@ -1,0 +1,5 @@
+export const LANGUAGES = {
+  JAVASCRIPT: "JAVASCRIPT",
+  JAVA: "JAVA",
+  CSHARP: "CSHARP",
+};

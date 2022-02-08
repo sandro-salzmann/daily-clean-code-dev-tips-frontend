@@ -1,30 +1,22 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Fragment } from "react";
 import { Button, Container, Header, Message } from "semantic-ui-react";
 import { LanguageDisplay } from "../components/LanguageDisplay";
 import { NotificationSample } from "../components/NotificationSample";
 import useConfig from "../utils/useConfig";
+import useNavigation from "../utils/useNavigation";
 
 export const HomePage = () => {
-  const navigate = useNavigate();
-  const { isConfigured } = useConfig();
+  const { onStartClick, onConfigureClick, onTipsClick, onInstallClick } =
+    useNavigation();
+  const { isConfigured, isConfiguring, deleteConfig } = useConfig();
 
-  const onStartClick = () => {
-    navigate("/setup");
+  const onCleanStartClick = () => {
+    deleteConfig();
+    onStartClick();
   };
-
-  const onConfigureClick = () => {
-    navigate("/settings");
-  };
-
-  const onTipsClick = () => {
-    navigate("/tips");
-  };
-
-  const onInstallClick = () => {};
 
   return (
-    <Container text>
+    <Fragment>
       <Header textAlign="center" as="h1" style={{ marginBottom: 24.571 }}>
         Get clean code tips as notifications
       </Header>
@@ -33,11 +25,12 @@ export const HomePage = () => {
         Learn to code cleaner every day. <br />
         No login required.
       </Header>
-      {isConfigured && (
+      {isConfigured ? (
         <Message positive>
           <Message.Header>Welcome back :)</Message.Header>
           <p>
-            You already set up notifications. Here's some things you can do now:
+            You've already set up notifications. Here's some things you can do
+            now:
           </p>
           <Button primary onClick={onConfigureClick}>
             Configure notifications
@@ -49,6 +42,19 @@ export const HomePage = () => {
             Install app
           </Button>
         </Message>
+      ) : (
+        isConfiguring && (
+          <Message warning>
+            <Message.Header>Welcome back :)</Message.Header>
+            <p>You've already started the setup in the past.</p>
+            <Button primary onClick={onStartClick}>
+              Continue setup
+            </Button>
+            <Button basic onClick={onCleanStartClick}>
+              Restart setup
+            </Button>
+          </Message>
+        )
       )}
       <p>
         Just select time & weekday you want to be notified with random clean
@@ -65,13 +71,24 @@ export const HomePage = () => {
         <NotificationSample />
       </div>
       <Container textAlign="center">
-        <Button
-          size="big"
-          primary
-          onClick={isConfigured ? onConfigureClick : onStartClick}
-        >
-          {isConfigured ? "Configure notifications" : "Start now"}
-        </Button>
+        {isConfiguring ? (
+          <Fragment>
+            <Button size="big" primary onClick={onStartClick}>
+              Continue setup
+            </Button>
+            <Button size="big" basic onClick={onCleanStartClick}>
+              Restart setup
+            </Button>
+          </Fragment>
+        ) : (
+          <Button
+            size="big"
+            primary
+            onClick={isConfigured ? onConfigureClick : onStartClick}
+          >
+            {isConfigured ? "Configure notifications" : "Start now"}
+          </Button>
+        )}
         <Header as="h3">
           or
           <Button
@@ -84,6 +101,6 @@ export const HomePage = () => {
           </Button>
         </Header>
       </Container>
-    </Container>
+    </Fragment>
   );
 };
