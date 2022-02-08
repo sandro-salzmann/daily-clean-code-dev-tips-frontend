@@ -1,5 +1,6 @@
-import useLocalState from "@phntms/use-local-state";
-import React from "react";
+import React, { Fragment } from "react";
+import { Button } from "semantic-ui-react";
+import useNavigation from "../utils/useNavigation";
 import { LanguageSelectionPage } from "./SetupPage/LanguageSelectionPage";
 import { SetupFinishedPage } from "./SetupPage/SetupFinishedPage";
 import { STEPS } from "./SetupPage/STEPS";
@@ -9,18 +10,7 @@ import { WeekdaySelectionPage } from "./SetupPage/WeekdaySelectionPage";
 import { LOCALSTORAGE_CONTEXT_KEY, SetupContext } from "./SetupPageContext";
 
 export const SetupPage = () => {
-  const [config, setConfig] = useLocalState(LOCALSTORAGE_CONTEXT_KEY, {
-    step: "LANGUAGE_SELECTION",
-    selectedLanguages: [],
-    timetable: [
-      {
-        amount: 1,
-        firstTime: "09:00",
-        secondTime: "17:00",
-      },
-    ],
-  });
-
+  const { showHomePage } = useNavigation();
   const { step, selectedLanguages, timetable, weekdays } = config;
 
   const setSelectedLanguages = selectedLanguages => {
@@ -33,6 +23,10 @@ export const SetupPage = () => {
 
   const setWeekdays = weekdays => {
     setConfig({ ...config, weekdays });
+  };
+
+  const showLanguageSelection = () => {
+    setConfig({ ...config, step: "LANGUAGE_SELECTION" });
   };
 
   const showTimingOverview = () => {
@@ -67,8 +61,20 @@ export const SetupPage = () => {
     );
   };
 
+  const goBack = () => {
+    if (step === STEPS.LANGUAGE_SELECTION) showHomePage();
+    if (step === STEPS.TIMING_OVERVIEW) showLanguageSelection();
+    if (step === STEPS.TIME_SELECTION) showTimingOverview();
+    if (step === STEPS.WEEKDAY_SELECTION) showTimeSelection();
+  };
+
   return (
-    <SetupContext.Provider value={config}>
+    <Fragment>
+      {step !== STEPS.SETUP_FINISH && (
+        <Button basic onClick={goBack}>
+          Back
+        </Button>
+      )}
       {step === STEPS.SETUP_FINISH && <SetupFinishedPage />}
       {step === STEPS.LANGUAGE_SELECTION && (
         <LanguageSelectionPage
@@ -96,6 +102,6 @@ export const SetupPage = () => {
           setWeekdays={setWeekdays}
         />
       )}
-    </SetupContext.Provider>
+    </Fragment>
   );
 };

@@ -19,7 +19,17 @@ function useNavigation() {
     // PWA not setup yet.
   };
 
-  return { onStartClick, onConfigureClick, onTipsClick, onInstallClick };
+  const showHomePage = () => {
+    navigate("/");
+  };
+
+  return {
+    onStartClick,
+    onConfigureClick,
+    onTipsClick,
+    onInstallClick,
+    showHomePage,
+  };
 }
 
 export default useNavigation;
