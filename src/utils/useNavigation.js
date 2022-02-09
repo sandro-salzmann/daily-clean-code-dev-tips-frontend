@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ConfigContext } from "../ConfigContextProvider";
 
 function useNavigation() {
   const navigate = useNavigate();
+  const { showLanguageSelection } = useContext(ConfigContext);
 
   const onStartClick = () => {
+    showLanguageSelection();
+    navigate("/setup");
+  };
+
     navigate("/setup");
   };
 

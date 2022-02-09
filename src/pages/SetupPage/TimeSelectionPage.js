@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Button, Header } from "semantic-ui-react";
 import { Timetable } from "../../components/Timetable";
+import { ConfigContext } from "../../ConfigContextProvider";
 
-export const TimeSelectionPage = ({
-  timetable,
-  setTimetable,
-  showWeekdaySelection,
-}) => {
+export const TimeSelectionPage = () => {
+  const { timetable, setTimetable, showWeekdaySelection } =
+    useContext(ConfigContext);
+
   return (
     <Fragment>
       <Header as="h1">When do you want to be notified?</Header>

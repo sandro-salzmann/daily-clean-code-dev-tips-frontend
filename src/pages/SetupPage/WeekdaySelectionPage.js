@@ -1,12 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Button, Header } from "semantic-ui-react";
 import { WeekdaysSelectionWithTimetables } from "../../components/WeekdaysSelectionWithTimetables";
+import { ConfigContext } from "../../ConfigContextProvider";
 
-export const WeekdaySelectionPage = ({
-  showSetupFinish,
-  weekdays,
-  setWeekdays,
-}) => {
+export const WeekdaySelectionPage = () => {
+  const { weekdays, setWeekdays, showSetupFinish } = useContext(ConfigContext);
+
   return (
     <Fragment>
       <Header as="h1">On which days do you want to get notified?</Header>

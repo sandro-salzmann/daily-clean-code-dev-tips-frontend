@@ -1,19 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Button, Container, Header, Message } from "semantic-ui-react";
 import { LanguageDisplay } from "../components/LanguageDisplay";
 import { NotificationSample } from "../components/NotificationSample";
-import useConfig from "../utils/useConfig";
+import { ConfigContext } from "../ConfigContextProvider";
 import useNavigation from "../utils/useNavigation";
 
 export const HomePage = () => {
-  const { onStartClick, onConfigureClick, onTipsClick, onInstallClick } =
-    useNavigation();
-  const { isConfigured, isConfiguring, deleteConfig } = useConfig();
-
-  const onCleanStartClick = () => {
-    deleteConfig();
-    onStartClick();
-  };
+  const { isConfigured, isConfiguring } = useContext(ConfigContext);
 
   return (
     <Fragment>
