@@ -11,6 +11,7 @@ function useNavigation() {
     navigate("/setup");
   };
 
+  const onContinueClick = () => {
     navigate("/setup");
   };
 
@@ -32,6 +33,7 @@ function useNavigation() {
 
   return {
     onStartClick,
+    onContinueClick,
     onConfigureClick,
     onTipsClick,
     onInstallClick,
