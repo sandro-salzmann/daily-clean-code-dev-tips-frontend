@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { ConfigContextProvider } from "./ConfigContextProvider";
 import reportWebVitals from "./reportWebVitals";
+import { SettingsContextProvider } from "./SettingsContextProvider";
 
 if (module.hot) {
   module.hot.accept();
@@ -10,7 +11,9 @@ if (module.hot) {
 
 ReactDOM.render(
   <ConfigContextProvider>
-    <App />
+    <SettingsContextProvider>
+      <App />
+    </SettingsContextProvider>
   </ConfigContextProvider>,
   document.getElementById("root")
 );

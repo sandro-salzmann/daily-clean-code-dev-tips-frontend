@@ -16,32 +16,32 @@ export const SetupPage = () => {
 
   const tabs = {
     [STEPS.LANGUAGE_SELECTION]: {
-      render: LanguageSelectionPage,
+      component: <LanguageSelectionPage />,
       goBack: showHomePage,
     },
     [STEPS.TIMING_OVERVIEW]: {
-      render: TimingOverviewPage,
+      component: <TimingOverviewPage />,
       goBack: showLanguageSelection,
     },
     [STEPS.TIME_SELECTION]: {
-      render: TimeSelectionPage,
+      component: <TimeSelectionPage />,
       goBack: showTimingOverview,
     },
     [STEPS.WEEKDAY_SELECTION]: {
-      render: WeekdaySelectionPage,
+      component: <WeekdaySelectionPage />,
       goBack: showTimeSelection,
     },
     [STEPS.SETUP_FINISH]: {
-      render: SetupFinishedPage,
+      component: <SetupFinishedPage />,
     },
   };
 
-  const { render, goBack } = tabs[step];
+  const { component, goBack } = tabs[step];
 
   return (
     <Fragment>
       {goBack && <Button basic onClick={goBack} content="Back" />}
-      {render()}
+      {component}
     </Fragment>
   );
 };
