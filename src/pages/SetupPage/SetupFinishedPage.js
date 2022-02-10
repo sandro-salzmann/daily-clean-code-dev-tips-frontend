@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Button, Header, Icon } from "semantic-ui-react";
 import useNavigation from "../../utils/useNavigation";
 
@@ -6,7 +6,7 @@ export const SetupFinishedPage = () => {
   const { onConfigureClick, onTipsClick, onInstallClick } = useNavigation();
 
   return (
-    <div>
+    <Fragment>
       <Header as="h1">
         <Icon name="check circle" color="green" />
         Great, you're all setup!
@@ -43,6 +43,6 @@ export const SetupFinishedPage = () => {
       >
         Configure notifications
       </Button>
-    </div>
+    </Fragment>
   );
 };

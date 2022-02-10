@@ -1,14 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Button, Header } from "semantic-ui-react";
 import { LanguageSelection } from "../../components/LanguageSelection";
-import { useContext } from "react";
-import { SetupContext } from "../SetupPageContext";
+import { ConfigContext } from "../../ConfigContextProvider";
 
-export const LanguageSelectionPage = ({
-  showTimingOverview,
-  toggleLanguageSelection,
-}) => {
-  const { selectedLanguages } = useContext(SetupContext);
+export const LanguageSelectionPage = () => {
+  const { selectedLanguages, showTimingOverview, toggleLanguageSelection } =
+    useContext(ConfigContext);
 
   return (
     <Fragment>

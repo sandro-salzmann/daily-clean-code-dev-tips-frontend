@@ -1,27 +1,27 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Button, Container, Header, Message } from "semantic-ui-react";
 import { LanguageDisplay } from "../components/LanguageDisplay";
 import { NotificationSample } from "../components/NotificationSample";
-import useConfig from "../utils/useConfig";
+import { ConfigContext } from "../ConfigContextProvider";
 import useNavigation from "../utils/useNavigation";
 
 export const HomePage = () => {
-  const { onStartClick, onConfigureClick, onTipsClick, onInstallClick } =
-    useNavigation();
-  const { isConfigured, isConfiguring, deleteConfig } = useConfig();
-
-  const onCleanStartClick = () => {
-    deleteConfig();
-    onStartClick();
-  };
+  const {
+    onStartClick,
+    onContinueClick,
+    onConfigureClick,
+    onTipsClick,
+    onInstallClick,
+  } = useNavigation();
+  const { isConfigured, isConfiguring } = useContext(ConfigContext);
 
   return (
     <Fragment>
-      <Header textAlign="center" as="h1" style={{ marginBottom: 24.571 }}>
+      <Header textAlign="center" as="h2" style={{ marginBottom: 24.571 }}>
         Get clean code tips as notifications
       </Header>
       <LanguageDisplay />
-      <Header as="h2">
+      <Header as="h3">
         Learn to code cleaner every day. <br />
         No login required.
       </Header>
@@ -32,11 +32,11 @@ export const HomePage = () => {
             You've already set up notifications. Here's some things you can do
             now:
           </p>
-          <Button primary onClick={onConfigureClick}>
-            Configure notifications
-          </Button>
-          <Button primary onClick={onTipsClick}>
+          <Button secondary onClick={onTipsClick}>
             View tips
+          </Button>
+          <Button secondary onClick={onConfigureClick}>
+            Settings
           </Button>
           <Button basic onClick={onInstallClick}>
             Install app
@@ -47,11 +47,8 @@ export const HomePage = () => {
           <Message warning>
             <Message.Header>Welcome back :)</Message.Header>
             <p>You've already started the setup in the past.</p>
-            <Button primary onClick={onStartClick}>
+            <Button primary onClick={onContinueClick}>
               Continue setup
-            </Button>
-            <Button basic onClick={onCleanStartClick}>
-              Restart setup
             </Button>
           </Message>
         )
@@ -70,37 +67,36 @@ export const HomePage = () => {
       >
         <NotificationSample />
       </div>
-      <Container textAlign="center">
-        {isConfiguring ? (
-          <Fragment>
-            <Button size="big" primary onClick={onStartClick}>
-              Continue setup
+      {!isConfigured && (
+        <Container textAlign="center">
+          {isConfiguring ? (
+            <Fragment>
+              <Button size="big" primary onClick={onStartClick}>
+                Continue setup
+              </Button>
+            </Fragment>
+          ) : (
+            <Button
+              size="big"
+              primary
+              onClick={isConfigured ? onConfigureClick : onStartClick}
+            >
+              Start now
             </Button>
-            <Button size="big" basic onClick={onCleanStartClick}>
-              Restart setup
+          )}
+          <Header as="h4">
+            or
+            <Button
+              secondary
+              basic
+              onClick={onInstallClick}
+              style={{ marginLeft: 8 }}
+            >
+              install our app
             </Button>
-          </Fragment>
-        ) : (
-          <Button
-            size="big"
-            primary
-            onClick={isConfigured ? onConfigureClick : onStartClick}
-          >
-            {isConfigured ? "Configure notifications" : "Start now"}
-          </Button>
-        )}
-        <Header as="h3">
-          or
-          <Button
-            secondary
-            basic
-            onClick={onInstallClick}
-            style={{ marginLeft: 8 }}
-          >
-            install our app
-          </Button>
-        </Header>
-      </Container>
+          </Header>
+        </Container>
+      )}
     </Fragment>
   );
 };
